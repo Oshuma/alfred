@@ -15,6 +15,7 @@ module Alfred
       @disk_usage = %x[ df -h ]
       @memory = %x[ free ]
       @users = %x[ w ]
+      @uptime = %x[ uptime ]
       erb :index
     end
 
