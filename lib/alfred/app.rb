@@ -9,17 +9,11 @@ module Alfred
 
     before do
       @hostname = Alfred::Command.exec('hostname')
+      @command_file = File.dirname(__FILE__) + '/../../config/commands.yml'
     end
 
     get '/' do
-      command_file = File.dirname(__FILE__) + '/../../config/commands.yml'
-      @commands = Alfred::Command.from_yaml(command_file)
-      # @commands = [
-      #   Alfred::Command.new('Disk Usage', 'df -h'),
-      #   # Alfred::Command.new('Memory', 'free'),
-      #   Alfred::Command.new('Users', 'w'),
-      #   Alfred::Command.new('Uptime', 'uptime')
-      # ]
+      @commands = Alfred::Command.from_yaml(@command_file)
       erb :index
     end
 

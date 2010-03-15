@@ -22,11 +22,16 @@ describe Alfred::Command do
     end.should raise_error(Alfred::CommandError)
   end
 
-  it 'reads commands from a file' do
-    command_file = File.dirname(__FILE__) + '/../../config/commands.spec.yml'
-    commands = Command.from_yaml(command_file)
-    commands.each { |c| c.should be_instance_of(Command) }
-  end
+  describe 'YAML file' do
+    before(:each) do
+      @command_file = File.dirname(__FILE__) + '/../../config/commands.spec.yml'
+    end
+
+    it 'reads commands from a file' do
+      commands = Command.from_yaml(@command_file)
+      commands.each { |c| c.should be_instance_of(Command) }
+    end
+  end # YAML file
 
   describe 'instance' do
     before(:each) do
