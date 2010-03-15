@@ -31,6 +31,11 @@ describe Alfred::Command do
     it 'stores the raw command string' do
       @command.raw.should == @options[:exec]
     end
+
+    it 'runs the command' do
+      @command.exec!
+      @command.output.should_not be_nil
+    end
   end # instance
 
 end

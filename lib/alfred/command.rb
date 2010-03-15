@@ -12,21 +12,22 @@ module Alfred
 
   class Command
 
+    attr_accessor :name
+    attr_reader :raw, :output
+
     class << self
-      # TODO: Sanitize the +raw_string+ input.
       def exec(raw_string)
-        %x[#{raw_string}].chomp
+        new('Command', raw_string).exec!
       end
     end # self
-
-    attr_accessor :name
-    attr_reader :raw
 
     # Use as such:
     #
     #   Command.new('Host', 'hostname')
     #   # ..or..
     #   Command.new({ :name => 'Host', :exec => 'hostname' })
+    #
+    # TODO: Sanitize the @raw input.
     def initialize(*args)
       if args.first.is_a?(Hash)
         options = args.first
@@ -37,6 +38,10 @@ module Alfred
         @raw  = args[1]
       end
       raise Alfred::CommandError unless @raw
+    end
+
+    def exec!
+      @output = %x[ #{@raw} ].chomp
     end
 
   end # Command
