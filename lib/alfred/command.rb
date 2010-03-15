@@ -13,7 +13,7 @@ module Alfred
   class Command
 
     attr_accessor :name
-    attr_reader :raw, :output
+    attr_reader :raw
 
     class << self
       def exec(raw_string)
@@ -42,6 +42,11 @@ module Alfred
 
     def exec!
       @output = %x[ #{@raw} ].chomp
+    end
+
+    def output
+      exec! if @output.nil?
+      @output
     end
 
   end # Command

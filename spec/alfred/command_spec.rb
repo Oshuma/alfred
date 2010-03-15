@@ -36,6 +36,11 @@ describe Alfred::Command do
       @command.exec!
       @command.output.should_not be_nil
     end
+
+    it 'runs the command if output is nil' do
+      @command.instance_variable_get(:@output).should be_nil
+      @command.output.should_not be_nil # runs exec! in #output
+    end
   end # instance
 
 end
