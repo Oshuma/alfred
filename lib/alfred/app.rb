@@ -12,6 +12,13 @@ module Alfred
       @command_file = File.dirname(__FILE__) + '/../../config/commands.yml'
     end
 
+    helpers do
+      def anchor_name(string)
+        link = string.gsub(/\s/, '_').downcase
+        link
+      end
+    end
+
     get '/' do
       @commands = Alfred::Command.from_yaml(@command_file)
       erb :index

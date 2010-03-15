@@ -7,6 +7,23 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div id="menu">
+      <a href="#hide">Hide</a><br />
+      <div>
+        <label for="refresh_page">Refresh Page:</label>
+        <input type="checkbox" id="refresh_page" />
+        <!-- every <input type="text" id="refresh_interval" value="10" size="3" /> seconds -->
+      </div>
+      <div>
+        <% @commands.each do |command| %>
+          <a href="#<%= anchor_name(command.name) %>"><%= command.name %></a>
+          <br />
+        <% end %>
+      </div>
+    </div>
+
+    <div id="page">
+      <%= yield %>
+    </div>
   </body>
 </html>
