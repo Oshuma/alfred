@@ -8,14 +8,14 @@ module Alfred
     enable :static
 
     before do
-      @hostname = %x[ hostname ]
+      # @hostname = %x[ hostname ]
     end
 
     get '/' do
-      @disk_usage = %x[ df -h ]
-      @memory = %x[ free ]
-      @users = %x[ w ]
-      @uptime = %x[ uptime ]
+      # @disk_usage = %x[ df -h ]
+      # @memory = %x[ free ]
+      # @users = %x[ w ]
+      # @uptime = %x[ uptime ]
       erb :index
     end
 

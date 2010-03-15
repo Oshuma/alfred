@@ -18,4 +18,5 @@ module Rack::Test::Methods
 end
 
 Spec::Runner.configure do |config|
+  include Alfred
 end
