@@ -1,11 +1,4 @@
-<h2 class="header">Uptime</h2>
-<pre class="output"><%= @uptime %></pre>
-
-<h2 class="header">Disk Usage</h2>
-<pre class="output"><%= @disk_usage %></pre>
-
-<h2 class="header">Memory</h2>
-<pre class="output"><%= @memory %></pre>
-
-<h2 class="header">Users</h2>
-<pre class="output"><%= @users %></pre>
+<% @commands.each do |command| %>
+  <h2 class="header"><%= command.name %></h2>
+  <pre class="output"><%= command.output %></pre>
+<% end %>

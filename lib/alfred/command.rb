@@ -1,11 +1,4 @@
-if false
-    COMMANDS = %w[
-      disk_usage
-      memory
-      uptime
-      users
-    ]
-end
+require 'yaml'
 
 module Alfred
   class CommandError < StandardError; end
@@ -18,6 +11,15 @@ module Alfred
     class << self
       def exec(raw_string)
         new('Command', raw_string).exec!
+      end
+
+      # Return an array of Commands, read from a YAML file.
+      def from_yaml(command_file)
+        commands = []
+        YAML.load_file(File.expand_path(command_file)).each do |cmd|
+          commands << new(cmd['name'], cmd['exec'])
+        end
+        commands
       end
     end # self
 

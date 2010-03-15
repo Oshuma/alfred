@@ -1,0 +1,12 @@
+---
+- name: Disk Usage
+  exec: df -h
+
+# - name: Memory
+#   exec: free
+
+- name: Users
+  exec: w
+
+- name: Uptime
+  exec: uptime

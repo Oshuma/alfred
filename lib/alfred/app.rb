@@ -8,14 +8,18 @@ module Alfred
     enable :static
 
     before do
-      # @hostname = %x[ hostname ]
+      @hostname = Alfred::Command.exec('hostname')
     end
 
     get '/' do
-      # @disk_usage = %x[ df -h ]
-      # @memory = %x[ free ]
-      # @users = %x[ w ]
-      # @uptime = %x[ uptime ]
+      command_file = File.dirname(__FILE__) + '/../../config/commands.yml'
+      @commands = Alfred::Command.from_yaml(command_file)
+      # @commands = [
+      #   Alfred::Command.new('Disk Usage', 'df -h'),
+      #   # Alfred::Command.new('Memory', 'free'),
+      #   Alfred::Command.new('Users', 'w'),
+      #   Alfred::Command.new('Uptime', 'uptime')
+      # ]
       erb :index
     end
 
