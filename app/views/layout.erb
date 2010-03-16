@@ -19,8 +19,16 @@
       </div>
       -->
       <div>
+        <a href="/">Main</a>
+        <a href="/">&rarr;</a><br />
+        <a href="/commands">Commands</a>
+        <a href="/commands">&rarr;</a>
+      </div>
+
+      <div>
         <% @commands.each do |command| %>
-          <a href="#<%= anchor_name(command.name) %>"><%= command.name %></a>
+          <a href="#<%= command.id %>"><%= command.name %></a>
+          <a href="/command/<%= command.id %>">&rarr;</a>
           <br />
         <% end %>
       </div>
