@@ -24,8 +24,16 @@ body {
   padding: 5px 0;
 }
 
+#status {
+  border: 1px solid #ddd;
+  font-size: 0.75em;
+  margin: 0 auto;
+  min-width: 500px;
+  padding: 5px;
+  width: 70%;
+}
+
 #page {
-  margin-top: 2em;
 }
 
 .command {
