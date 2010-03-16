@@ -19,6 +19,7 @@ body {
 
 #menu div {
   border-top: 1px solid #aaa;
+  display: none;  /* initially hidden */
   margin: 5px auto;
   padding: 5px 0;
 }
