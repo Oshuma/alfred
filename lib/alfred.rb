@@ -1,7 +1,7 @@
 $LOAD_PATH.unshift File.dirname(__FILE__)
 
 module Alfred
-  VERSION = '0.2.1'
+  VERSION = '0.3.0'
 
   class CommandError < StandardError; end
 
