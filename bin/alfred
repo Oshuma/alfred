@@ -6,5 +6,6 @@ require "#{File.dirname(__FILE__)}/../lib/alfred"
 puts 'Starting Alfred...'
 
 Alfred::App.run!({
-  :environment => :production
+  :environment => :production,
+  :port => '80'
 })
