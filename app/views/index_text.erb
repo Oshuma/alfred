@@ -1,0 +1,7 @@
+<% @commands.each do |command| %>
+<% header = '-' * (command.name.length + 4) %>
+<%= header %>
+| <%= command.name %> |
+<%= header %>
+<%= command.output %>
+<% end %>

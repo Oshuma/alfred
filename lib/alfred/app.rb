@@ -19,6 +19,12 @@ module Alfred
       end
     end
 
+    # Text representation (for curling).
+    get '/', :agent => /^curl\/([\d\.]+)/ do
+      @commands = Alfred::Command.from_yaml(@command_file)
+      erb :index_text, :layout => false
+    end
+
     get '/' do
       @commands = Alfred::Command.from_yaml(@command_file)
       erb :index
