@@ -1,8 +1,6 @@
 require 'yaml'
 
 module Alfred
-  class CommandError < StandardError; end
-
   class Command
 
     attr_accessor :name

@@ -3,9 +3,4 @@
 require 'rubygems' if RUBY_VERSION =~ /^1.8/
 require "#{File.dirname(__FILE__)}/../lib/alfred"
 
-puts 'Starting Alfred...'
-
-Alfred::App.run!({
-  :environment => :production,
-  :port => '80'
-})
+Alfred::Client.run
