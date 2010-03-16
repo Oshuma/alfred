@@ -13,6 +13,9 @@ module Alfred
     end
 
     helpers do
+      include Rack::Utils
+      alias_method :h, :escape_html
+
       def anchor_name(string)
         link = string.gsub(/\s/, '_').downcase
         link

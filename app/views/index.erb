@@ -2,6 +2,6 @@
   <div class="command">
     <a name="<%= anchor_name(command.name) %>"></a>
     <h2 class="header"><%= command.name %></h2>
-    <pre class="output"><%= command.output %></pre>
+    <pre class="output"><%=h command.output %></pre>
   </div>
 <% end %>
