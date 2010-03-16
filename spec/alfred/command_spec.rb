@@ -52,6 +52,11 @@ describe Alfred::Command do
       @command.instance_variable_get(:@output).should be_nil
       @command.output.should_not be_nil # runs exec! in #output
     end
+
+    it 'generates a proper id' do
+      command = Command.new({ :name => 'The Command', :exec => 'hostname' })
+      command.id.should == 'the_command'
+    end
   end # instance
 
 end
