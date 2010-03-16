@@ -1,13 +1,7 @@
 #!/usr/bin/env ruby
 
-alfred = "#{File.dirname(__FILE__)}/../lib/alfred"
-
-begin
-  require alfred
-rescue LoadError
-  require 'rubygems'
-  require alfred
-end
+require 'rubygems' if RUBY_VERSION =~ /^1.8/
+require "#{File.dirname(__FILE__)}/../lib/alfred"
 
 puts 'Starting Alfred...'
 
