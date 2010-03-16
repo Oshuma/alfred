@@ -10,6 +10,7 @@ module Alfred
     before do
       @hostname = Alfred::Command.exec('hostname')
       @command_file = File.dirname(__FILE__) + '/../../config/commands.yml'
+      @commands = Alfred::Command.from_yaml(@command_file)
     end
 
     helpers do
@@ -23,13 +24,12 @@ module Alfred
     end
 
     # Text representation (for curling).
-    get '/', :agent => /^curl\/([\d\.]+)/ do
-      @commands = Alfred::Command.from_yaml(@command_file)
+    get '/', :agent => /^(curl\/[\d\.]+)/ do
+      headers['Content-Type'] = 'text/plain'
       erb :index_text, :layout => false
     end
 
     get '/' do
-      @commands = Alfred::Command.from_yaml(@command_file)
       erb :index
     end
 
