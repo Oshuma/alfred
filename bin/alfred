@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 require "#{File.dirname(__FILE__)}/../lib/alfred"
 
+puts 'Starting Alfred...'
+
 Alfred::App.run!({
   :environment => :production
 })
