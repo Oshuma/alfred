@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe Alfred::Command do
 
+  before(:each) do
+    @command_file = File.dirname(__FILE__) + '/../../config/commands.spec.yml'
+  end
+
   it 'can execute arbitrary shell commands' do
     Command.exec('hostname').should == %x[hostname].chomp
   end
@@ -23,15 +27,27 @@ describe Alfred::Command do
   end
 
   describe 'YAML file' do
-    before(:each) do
-      @command_file = File.dirname(__FILE__) + '/../../config/commands.spec.yml'
-    end
-
     it 'reads commands from a file' do
       commands = Command.from_yaml(@command_file)
       commands.each { |c| c.should be_instance_of(Command) }
     end
   end # YAML file
+
+  describe 'loading' do
+    before(:each) do
+      Command.remove_class_variable(:@@commands) if Command.commands
+      Command.load_from_yaml(@command_file).should be_true
+    end
+
+    it 'saves the commands into @@commands' do
+      Command.class_variable_get(:@@commands).should_not be_empty
+      Command.commands.should_not be_empty
+    end
+
+    it 'has an "all" method to the loaded commands' do
+      Command.all.should_not be_empty
+    end
+  end # loading
 
   describe 'instance' do
     before(:each) do
