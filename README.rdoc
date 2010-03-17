@@ -1,0 +1,21 @@
+= Alfred
+
+Simple system monitoring app.
+
+== Setup
+
+Clone the app:
+
+  $ git clone git://github.com/Oshuma/alfred.git
+
+Create a <tt>config/commands.yml</tt> file (see the example file).
+
+Run the server:
+
+  $ screen -A -m -S alfred ./bin/alfred server
+
+Once the server is up, you can either hit the web URL or the curl interface:
+
+  $ curl http://example.com:4567/command/disk
+  # .. or the shorthand...
+  $ curl http://example.com:4567/c/disk
