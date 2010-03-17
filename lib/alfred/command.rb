@@ -46,12 +46,14 @@ module Alfred
         options = args.first
         @name = options[:name] || options['name']
         @raw  = options[:exec] || options['exec']
+        @id   = options[:id]   || options['id']
       else
         @name = args[0]
         @raw  = args[1]
+        @id   = args[2]
       end
       raise Alfred::CommandError unless @name && @raw
-      generate_id
+      generate_id unless @id
     end
 
     def exec!

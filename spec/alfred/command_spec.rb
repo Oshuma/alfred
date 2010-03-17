@@ -73,6 +73,17 @@ describe Alfred::Command do
       command = Command.new({ :name => 'The Command', :exec => 'hostname' })
       command.id.should == 'the_command'
     end
+
+    it 'uses a custom id (hash constructor)' do
+      @options[:id] = 'the_command'
+      command = Command.new(@options)
+      command.id.should == 'the_command'
+    end
+
+    it 'uses a custom id (array constructor)' do
+      command = Command.new('Name', 'hostname', 'the_command')
+      command.id.should == 'the_command'
+    end
   end # instance
 
 end
