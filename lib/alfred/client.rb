@@ -16,7 +16,9 @@ module Alfred
       @args = args
       @command = @args.shift
       @options = { # defaults
-        :environment => :production
+        :server => {
+          :environment => :production
+        }
       }
       validate_command
       setup_option_parser
@@ -29,7 +31,7 @@ module Alfred
         case @command
         when 'server'
           $stdout.puts 'Starting Alfred server...'
-          Alfred::App.run!(@options)
+          Alfred::App.run!(@options[:server])
         end
       rescue OptionParser::InvalidOption => error
         $stderr.puts "#{error}\n\n#{@opt_parser}"
@@ -73,15 +75,15 @@ module Alfred
         case @command
         when 'server'
           opts.on('-e', '--environment <environment>', 'Set the environment') do |env|
-            @options[:environment] = env
+            @options[:server][:environment] = env
           end
 
           opts.on('-h', '--host <host>', 'Set the hostname') do |host|
-            @options[:host] = host
+            @options[:server][:host] = host
           end
 
           opts.on('-p', '--port <port>', 'Set the port') do |port|
-            @options[:port] = port
+            @options[:server][:port] = port
           end
         end
       end # OptionParser.new
