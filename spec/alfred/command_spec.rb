@@ -7,7 +7,7 @@ describe Alfred::Command do
   end
 
   it 'can execute arbitrary shell commands' do
-    Command.exec('hostname').should == %x[hostname].chomp
+    Command.exec('hostname').should == %x[hostname]
   end
 
   it '#initialize accepts an array' do

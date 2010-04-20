@@ -57,7 +57,7 @@ module Alfred
     end
 
     def exec!
-      @output = %x[ #{@raw} ].chomp
+      @output = %x[ #{@raw} ]
     end
 
     def output
