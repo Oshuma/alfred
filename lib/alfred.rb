@@ -22,4 +22,10 @@ module Alfred
     @@config ||= ( YAML.load_file(CONFIG) || {} )
     @@config
   end
+
+  # Returns +true+ if +api_key+ matches the one from <tt>#config['auth']['api_key']</tt>.
+  def self.authenticate(api_key)
+    return false unless config['auth']
+    config['auth']['api_key'] == api_key
+  end
 end
