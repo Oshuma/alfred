@@ -35,12 +35,12 @@ describe Alfred::Command do
 
   describe 'loading' do
     before(:each) do
-      Command.remove_class_variable(:@@commands) if Command.commands
+      Command.send(:remove_class_variable, :@@commands) if Command.commands
       Command.load_from_yaml(@command_file).should be_true
     end
 
     it 'saves the commands into @@commands' do
-      Command.class_variable_get(:@@commands).should_not be_empty
+      Command.send(:class_variable_get, :@@commands).should_not be_empty
       Command.commands.should_not be_empty
     end
 

@@ -16,7 +16,7 @@ describe Module do
       mattr_writer :attribute
     end
     WriterModule.attribute = 'the value'
-    WriterModule.class_variable_get(:@@attribute).should == 'the value'
+    WriterModule.send(:class_variable_get, (:@@attribute)).should == 'the value'
   end
 
   it 'has a mattr_accessor class method' do

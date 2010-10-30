@@ -18,8 +18,11 @@ describe Alfred::App do
   describe '/command' do
     before(:each) do
       @command_file = File.dirname(__FILE__) + '/../../config/commands.spec.yml'
-      @commands = Command.from_yaml(@command_file)
+      @commands = Command.load_from_yaml(@command_file)
       @command = @commands.first
+
+      # FIXME: Hack to work around my bad design; remove after it works less stupid.
+      Command.should_receive(:from_yaml).and_return(@commands)
     end
 
     it 'shows the command output' do
