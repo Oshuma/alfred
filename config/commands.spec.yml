@@ -1,6 +1,0 @@
----
-- name: Host
-  exec: hostname
-
-- name: Disk Usage
-  exec: df -h

@@ -1,0 +1,10 @@
+---
+#
+# Commands used in the tests (only available on Linux and OSX).
+#
+
+- name: Host
+  exec: hostname
+
+- name: Disk Usage
+  exec: df -h

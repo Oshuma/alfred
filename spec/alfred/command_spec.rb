@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Alfred::Command do
 
   before(:each) do
-    @command_file = File.dirname(__FILE__) + '/../../config/commands.spec.yml'
+    @command_file = File.expand_path("#{File.dirname(__FILE__)}/../../spec/commands.yml")
   end
 
   it 'can execute arbitrary shell commands' do

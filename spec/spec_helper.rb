@@ -2,6 +2,9 @@ require 'rubygems' if RUBY_VERSION =~ /^1\.8/
 require 'rspec'
 require 'rack/test'
 
+# Specify the test config before loading Alfred.
+ENV['ALFRED_CONFIG'] = File.expand_path("#{File.dirname(__FILE__)}/alfred.yml")
+
 require "#{File.dirname(__FILE__)}/../lib/alfred"
 
 module Rack::Test::Methods

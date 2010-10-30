@@ -17,7 +17,7 @@ describe Alfred::App do
 
   describe '/command' do
     before(:each) do
-      @command_file = File.dirname(__FILE__) + '/../../config/commands.spec.yml'
+      @command_file = File.expand_path("#{File.dirname(__FILE__)}/../../spec/commands.yml")
       @commands = Command.load_from_yaml(@command_file)
       @command = @commands.first
 

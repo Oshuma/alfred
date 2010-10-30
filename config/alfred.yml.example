@@ -1,0 +1,10 @@
+---
+#
+# This config file can be used to store arbitrary things (auth details, for example).
+#
+
+# api_key: ad3ccb67bf338c7a6bec273454f264e857a55379
+
+# database:
+#   username: db_user
+#   password: their_password

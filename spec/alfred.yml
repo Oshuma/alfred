@@ -1,0 +1,7 @@
+---
+#
+# This config is used in the specs (mimics ROOT/config/alfred.yml).
+#
+
+some_key: some value
+oh_look: here goes another!
