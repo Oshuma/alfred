@@ -1,13 +1,6 @@
-spec_deps = %w[
-  spec
-  rack/test
-]
-begin
-  spec_deps.each { |lib| require lib }
-rescue LoadError
-  require 'rubygems'
-  spec_deps.each { |lib| require lib }
-end
+require 'rubygems' if RUBY_VERSION =~ /^1\.8/
+require 'rspec'
+require 'rack/test'
 
 require "#{File.dirname(__FILE__)}/../lib/alfred"
 
@@ -17,6 +10,6 @@ module Rack::Test::Methods
   end
 end
 
-Spec::Runner.configure do |config|
+RSpec.configure do |config|
   include Alfred
 end
