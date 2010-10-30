@@ -1,3 +1,6 @@
+require 'rubygems' if RUBY_VERSION =~ /^1\.8/
+require 'bundler/setup'
+
 $LOAD_PATH.unshift File.dirname(__FILE__)
 
 require 'lib/core_ext/module'
