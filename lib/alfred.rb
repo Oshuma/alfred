@@ -6,7 +6,7 @@ $LOAD_PATH.unshift File.dirname(__FILE__)
 require 'lib/core_ext/module'
 
 module Alfred
-  VERSION = '0.4.0'
+  VERSION = '0.4.1'
 
   class CommandError < StandardError; end
 
@@ -19,7 +19,7 @@ module Alfred
   # Returns the configuration stored in <tt>./config/alfred.yml</tt>.
   def self.config
     raise "Alfred config not found: #{CONFIG}" unless File.exists?(CONFIG)
-    @@config ||= YAML.load_file(CONFIG)
+    @@config ||= ( YAML.load_file(CONFIG) || {} )
     @@config
   end
 end
