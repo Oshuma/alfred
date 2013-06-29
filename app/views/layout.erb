@@ -1,10 +1,52 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Alfred</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+
+    <link href="/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
+
+    <script src="/javascripts/jquery-2.0.2.min.js" type="text/javascript"></script>
+    <script src="/javascripts/application.js" type="text/javascript"></script>
+
+    <title>Alfred : <%= @hostname %></title>
   </head>
 
   <body>
-    <%= yield %>
+    <div id="menu">
+      <a id="menu-toggle" href="#menu">Menu</a><br />
+      <!--
+      <div>
+        <label for="refresh_page">Refresh Page:</label>
+        <input type="checkbox" id="refresh_page" />
+        every <input type="text" id="refresh_interval" value="10" size="3" /> seconds
+      </div>
+      -->
+      <div>
+        <a href="/">Main</a>
+        <a href="/">&rarr;</a><br />
+        <a href="/commands">Commands</a>
+        <a href="/commands">&rarr;</a>
+      </div>
+
+      <div>
+        <% @commands.each do |command| %>
+          <a href="#<%= command.id %>"><%= command.name %></a>
+          <a href="/command/<%= command.id %>">&rarr;</a>
+          <br />
+        <% end %>
+      </div>
+    </div>
+
+    <div id="status">
+      Alfred v<%= Alfred::VERSION %>
+      <br />
+      Ruby <%= RUBY_VERSION %> / Sinatra <%= Sinatra::VERSION %>
+      <br />
+      Generated on: <em><%= Time.now %></em>
+    </div>
+
+    <div id="page">
+      <%= yield %>
+    </div>
   </body>
 </html>
