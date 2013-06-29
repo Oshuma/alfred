@@ -3,36 +3,28 @@ require 'yaml'
 module Alfred
   class Command
 
-    mattr_accessor :commands
-
     attr_accessor :name
     attr_reader :id, :raw
 
-    class << self
-      def exec(raw_string)
-        new('Command', raw_string).exec!
-      end
+    def self.all
+      raise 'No commands loaded.' unless self.commands
+      self.commands
+    end
 
-      def all
-        raise 'No commands loaded.' unless self.commands
-        self.commands
-      end
+    def self.commands
+      defined?(@@commands) ? @@commands : nil
+    end
 
-      # Return an array of Commands, read from a YAML file.
-      def from_yaml(command_file)
-        commands = []
-        YAML.load_file(File.expand_path(command_file)).each do |command|
-          commands << new(command)
-        end
-        commands
-      end
+    def self.exec(raw_string)
+      new('Command', raw_string).exec!
+    end
 
-      # Loads the commands in +command_file+ into a class variable.
-      # (see Command.from_yaml)
-      def load_from_yaml(command_file)
-        @@commands = from_yaml(command_file)
-      end
-    end # self
+    # Return an array of Commands, read from a YAML file.
+    def self.from_yaml!(command_file)
+      @@commands = []
+      YAML.load_file(command_file).each { |c| @@commands << new(c) }
+      @@commands
+    end
 
     # Use as such:
     #
