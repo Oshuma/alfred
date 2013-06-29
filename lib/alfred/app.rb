@@ -11,13 +11,22 @@ module Alfred
     enable :static
 
     configure do
-      command_file = File.expand_path(File.join(Dir.pwd, 'config/commands.yml'))
+      Alfred.configure!(File.join(Dir.pwd, 'config/alfred.yml'))
+
+      command_file = File.join(Dir.pwd, 'config/commands.yml')
       Alfred::Command.load_yaml!(command_file)
     end
 
     helpers do
       include Rack::Utils
       alias_method :h, :escape_html
+    end
+
+    before do
+      auth_token = request.env['HTTP_X_AUTH_TOKEN']
+
+      halt 401 if auth_token.nil?
+      halt 401 unless auth_token == Alfred.config.auth_token
     end
 
     [ '/', '/commands' ].each do |root_path|
