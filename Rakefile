@@ -1,14 +1,13 @@
-require 'rspec/core/rake_task'
+require 'bundler'
 
-task :default => :spec
-
-desc 'Interactive Alfred'
+desc 'Start an irb session loaded with the app'
 task :console do
   sh "irb -I ./lib -r 'alfred'"
 end
+task c: :console # alias
 
-desc 'Run the specs'
-RSpec::Core::RakeTask.new(:spec) do |t|
-  t.rspec_opts = ['--color']
-  t.pattern = FileList['./spec/**/*_spec.rb']
+desc 'Start the server in development mode'
+task :server do
+  sh "bundle exec rackup"
 end
+task s: :server # alias

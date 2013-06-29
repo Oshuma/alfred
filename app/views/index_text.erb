@@ -1,6 +1,0 @@
-<% @commands.each do |command| %>
-<% header = "| #{command.name} | /c/#{command.id} |" %>
-<% sep = '-' * header.length %>
-<%= [sep, header, sep].join("\n") %>
-<%= command.output %>
-<% end %>
