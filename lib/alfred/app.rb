@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'json'
 
 module Alfred
   class App < Sinatra::Base
@@ -19,9 +20,11 @@ module Alfred
       alias_method :h, :escape_html
     end
 
-    get '/' do
-      @commands = Alfred::Command.all
-      erb(:index)
+    [ '/', '/commands' ].each do |root_path|
+      get root_path do
+        @commands = Alfred::Command.all
+        erb(:index)
+      end
     end
 
     [ '/command/:id', '/c/:id' ].each do |command_path|
@@ -32,5 +35,11 @@ module Alfred
       end
     end
 
+    # Commands API route
+    get '/api/commands.json' do
+      headers 'Content-Type' => 'application/json'
+      @commands = Alfred::Command.all
+      @commands.to_json
+    end
   end
 end
