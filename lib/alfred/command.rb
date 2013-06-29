@@ -61,6 +61,14 @@ module Alfred
       @output
     end
 
+    def to_json(options = {})
+      {
+        id: id,
+        name: name,
+        output: output,
+      }.to_json
+    end
+
     private
 
     def generate_id
