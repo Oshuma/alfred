@@ -28,13 +28,15 @@
         <a href="/commands">&rarr;</a>
       </div>
 
-      <div>
-        <% @commands.each do |command| %>
-          <a href="#<%= command.id %>"><%= command.name %></a>
-          <a href="/command/<%= command.id %>">&rarr;</a>
-          <br />
-        <% end %>
-      </div>
+      <% unless @commands.nil? %>
+        <div>
+          <% @commands.each do |command| %>
+            <a href="#<%= command.id %>"><%= command.name %></a>
+            <a href="/command/<%= command.id %>">&rarr;</a>
+            <br />
+          <% end %>
+        </div>
+      <% end %>
     </div>
 
     <div id="status">

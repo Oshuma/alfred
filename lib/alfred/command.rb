@@ -19,6 +19,10 @@ module Alfred
       new('Command', raw_string).exec!
     end
 
+    def self.find(id)
+      commands.select { |command| command.id == id }.first
+    end
+
     # Return an array of Commands, read from a YAML file.
     def self.from_yaml!(command_file)
       @@commands = []

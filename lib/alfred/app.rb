@@ -24,5 +24,17 @@ module Alfred
       erb(:index)
     end
 
+    get '/commands' do
+      @commands = Alfred::Command.all
+      erb(:commands)
+    end
+
+    [ '/command/:id', '/c/:id' ].each do |command_path|
+      get command_path do
+        @command = Alfred::Command.find(params[:id])
+        erb(:command)
+      end
+    end
+
   end
 end
