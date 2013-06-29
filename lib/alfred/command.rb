@@ -7,8 +7,8 @@ module Alfred
     attr_reader :id, :raw
 
     def self.all
-      raise 'No commands loaded.' unless self.commands
-      self.commands
+      raise 'No commands loaded.' unless commands
+      commands
     end
 
     def self.commands
