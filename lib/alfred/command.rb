@@ -23,8 +23,8 @@ module Alfred
       commands.select { |command| command.id == id }.first
     end
 
-    # Return an array of Commands, read from a YAML file.
-    def self.from_yaml!(command_file)
+    # Load an array of Commands from a YAML file.
+    def self.load_yaml!(command_file)
       @@commands = []
       YAML.load_file(command_file).each { |c| @@commands << new(c) }
       @@commands

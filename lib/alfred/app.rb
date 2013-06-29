@@ -11,7 +11,7 @@ module Alfred
 
     configure do
       command_file = File.expand_path(File.join(Dir.pwd, 'config/commands.yml'))
-      Alfred::Command.from_yaml!(command_file)
+      Alfred::Command.load_yaml!(command_file)
     end
 
     helpers do
