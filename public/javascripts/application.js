@@ -1,12 +1,15 @@
 $(document).ready(function() {
 
   $('#menu-toggle').click(function() {
-    if ($(this).text() == 'Hide') {
+    var closeLabel = '- Commands';
+    var showLabel  = '+ Commands';
+
+    if ($(this).text() == closeLabel) {
       $('#menu div').hide();
-      $(this).text('Menu');
+      $(this).text(showLabel);
     } else {
       $('#menu div').show();
-      $(this).text('Hide');
+      $(this).text(closeLabel);
     }
     return false;
   });

@@ -1,8 +1,0 @@
-<ul>
-  <% @commands.each do |command| %>
-    <li>
-      <a href="/command/<%= command.id %>"><%= command.name %></a>
-      <br /><%= "/c/#{command.id}" %>
-    </li>
-  <% end %>
-</ul>

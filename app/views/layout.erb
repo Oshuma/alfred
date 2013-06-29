@@ -13,7 +13,7 @@
 
   <body>
     <div id="menu">
-      <a id="menu-toggle" href="#menu">Menu</a><br />
+      <a id="menu-toggle" href="#menu">+ Commands</a><br />
       <!--
       <div>
         <label for="refresh_page">Refresh Page:</label>
@@ -22,18 +22,13 @@
       </div>
       -->
       <div>
-        <a href="/">Main</a>
-        <a href="/">&rarr;</a><br />
-        <a href="/commands">Commands</a>
-        <a href="/commands">&rarr;</a>
+        &rarr;&nbsp;<a href="/">Dashboard</a><br />
       </div>
 
       <% unless @commands.nil? %>
         <div>
           <% @commands.each do |command| %>
-            <a href="#<%= command.id %>"><%= command.name %></a>
-            <a href="/command/<%= command.id %>">&rarr;</a>
-            <br />
+            &rarr;&nbsp;<a href="/command/<%= command.id %>"><%= command.name %></a><br />
           <% end %>
         </div>
       <% end %>

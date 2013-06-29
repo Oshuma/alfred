@@ -6,15 +6,20 @@ body {
 #menu {
   position: fixed;
   top: 0;
-  right: 0;
+  left: 0;
 
   background-color: #fff;
   border: 3px solid #aaa;
   border-top: none;
-  border-right: none;
+  border-left: none;
   padding: 0.5em;
-  text-align: right;
+  text-align: left;
   z-index: 1000;
+}
+
+#menu a {
+  color: #999;
+  text-decoration: none;
 }
 
 #menu div {
@@ -34,21 +39,26 @@ body {
   width: 70%;
 }
 
-#page {
-}
-
 .command {
   margin-bottom: 1em;
 }
 
 .command .header {
-  border: 2px solid #ddd;
-  border-bottom: none;
   color: #666;
   display: inline;
-  font-size: 1.25em;
+}
+
+.command .header > a {
+  border: 2px solid #ddd;
+  border-bottom: none;
+  text-decoration: none;
+  color: #666;
   padding: 5px;
   padding-bottom: 1px;
+}
+
+.command .header > a:hover {
+  background-color: #eee;
 }
 
 .command .output {
