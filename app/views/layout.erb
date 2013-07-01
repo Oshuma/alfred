@@ -22,13 +22,14 @@
       </div>
       -->
       <div>
-        &rarr;&nbsp;<a href="/">Dashboard</a><br />
+        &rarr;&nbsp;<a href="<%= url('/') %>">Dashboard</a><br />
       </div>
 
       <% unless @commands.nil? %>
         <div>
           <% @commands.each do |command| %>
-            &rarr;&nbsp;<a href="/command/<%= command.id %>"><%= command.name %></a><br />
+            &rarr;&nbsp;<a href="<%= url("/command/#{command.id}") %>"><%= command.name %></a>
+            <br />
           <% end %>
         </div>
       <% end %>

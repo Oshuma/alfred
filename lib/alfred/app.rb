@@ -23,6 +23,8 @@ module Alfred
     end
 
     before do
+      @hostname = %x[hostname]
+
       if Alfred.config.auth_token
         auth_token = request.env['HTTP_X_AUTH_TOKEN']
 
