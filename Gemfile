@@ -5,10 +5,10 @@ ruby '2.0.0'
 gem 'sinatra'
 
 gem 'rake'
-gem 'thin'
 
 group :development, :test do
   gem 'rspec'
+  gem 'thin'
 end
 
 group :test do

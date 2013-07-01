@@ -8,7 +8,7 @@ Clone the app:
 
     $ git clone git://github.com/Oshuma/alfred.git
 
-Create a <tt>config/commands.yml</tt> file (see the example file).
+Create <tt>config/alfred.yml</tt> and <tt>config/commands.yml</tt> files (see the examples).
 
 Run the server:
 

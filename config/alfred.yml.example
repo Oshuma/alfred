@@ -3,7 +3,12 @@
 # This config file can be used to store arbitrary things (auth details, for example).
 #
 
-# api_key: ad3ccb67bf338c7a6bec273454f264e857a55379
+# Token Authentication
+# auth_token: ad3ccb67bf338c7a6bec273454f264e857a55379
+
+# HTTP Basic Auth
+# username: alfred
+# password: foobar
 
 # database:
 #   username: db_user

@@ -23,10 +23,16 @@ module Alfred
     end
 
     before do
-      auth_token = request.env['HTTP_X_AUTH_TOKEN']
+      if Alfred.config.auth_token
+        auth_token = request.env['HTTP_X_AUTH_TOKEN']
 
-      halt 401 if auth_token.nil?
-      halt 401 unless auth_token == Alfred.config.auth_token
+        halt 401 if auth_token.nil?
+        halt 401 unless auth_token == Alfred.config.auth_token
+      elsif Alfred.config.username
+        self.class.use Rack::Auth::Basic, "Restricted Area" do |username, password|
+          (username == Alfred.config.username) && (password == Alfred.config.password)
+        end
+      end
     end
 
     [ '/', '/commands' ].each do |root_path|
