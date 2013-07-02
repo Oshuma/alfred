@@ -24,6 +24,7 @@ module Alfred
 
     before do
       @hostname = %x[hostname]
+      @commands = Alfred::Command.all
 
       if Alfred.config.auth_token
         auth_token = request.env['HTTP_X_AUTH_TOKEN']
@@ -39,14 +40,12 @@ module Alfred
 
     [ '/', '/commands' ].each do |root_path|
       get root_path do
-        @commands = Alfred::Command.all
         erb(:index)
       end
     end
 
     [ '/command/:id', '/c/:id' ].each do |command_path|
       get command_path do
-        @commands = Alfred::Command.all
         @command = Alfred::Command.find(params[:id])
         erb(:command)
       end
@@ -55,7 +54,6 @@ module Alfred
     # Commands API route
     get '/api/commands.json' do
       headers 'Content-Type' => 'application/json'
-      @commands = Alfred::Command.all
       @commands.to_json
     end
   end

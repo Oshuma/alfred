@@ -26,7 +26,7 @@ module Alfred
     # Load an array of Commands from a YAML file.
     def self.load_yaml!(command_file)
       @@commands = []
-      YAML.load_file(command_file).each { |c| @@commands << new(c) }
+      ::YAML.load_file(command_file).each { |c| @@commands << new(c) }
       @@commands
     end
 
