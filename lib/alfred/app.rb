@@ -23,11 +23,8 @@ module Alfred
     end
 
     before do
-      @hostname = %x[hostname]
-      @commands = Alfred::Command.all
-
       if Alfred.config.auth_token
-        auth_token = request.env['HTTP_X_AUTH_TOKEN']
+        auth_token = request.env['HTTP_AUTHORIZATION']
 
         halt 401 if auth_token.nil?
         halt 401 unless auth_token == Alfred.config.auth_token
@@ -36,6 +33,9 @@ module Alfred
           (username == Alfred.config.username) && (password == Alfred.config.password)
         end
       end
+
+      @hostname = %x[hostname]
+      @commands = Alfred::Command.all
     end
 
     [ '/', '/commands' ].each do |root_path|
