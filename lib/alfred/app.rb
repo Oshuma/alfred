@@ -51,7 +51,14 @@ module Alfred
       end
     end
 
-    # Commands API route
+    # API: Authenticate
+    # This exists to give the client a positive result, since Unauthorized
+    # will be throw in the `before` block if authentication fails.
+    get '/api/authenticate.json' do
+      status 202 # Accepted
+    end
+
+    # API: Commands
     get '/api/commands.json' do
       headers 'Content-Type' => 'application/json'
       @commands.to_json
