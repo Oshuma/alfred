@@ -9,7 +9,3 @@
 # HTTP Basic Auth
 # username: alfred
 # password: foobar
-
-# database:
-#   username: db_user
-#   password: their_password
