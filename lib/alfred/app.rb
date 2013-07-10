@@ -24,7 +24,7 @@ module Alfred
 
     before do
       if Alfred.config.auth_token
-        auth_token = request.env['HTTP_AUTHORIZATION']
+        auth_token = request.env['HTTP_X_AUTH_TOKEN']
 
         halt 401 if auth_token.nil?
         halt 401 unless auth_token == Alfred.config.auth_token
