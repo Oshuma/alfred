@@ -68,7 +68,7 @@ module Alfred
     get '/api/authenticate.json' do
       check_auth_token!
       headers 'Content-Type' => 'application/json'
-      status 202 # Accepted
+      status 200 # OK
     end
 
     # API: Commands
