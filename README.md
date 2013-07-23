@@ -10,13 +10,13 @@ Clone the app:
 
 Create <tt>config/alfred.yml</tt> and <tt>config/commands.yml</tt> files (see the examples).
 
-Run the server:
+You must enable either the web interface or the JSON API (or both), since they default to `false`.
 
-    $ rackup
+To enable the web interface, set `enable_web` to `true` in `config/alfred.yml`.
 
-Once the server is up, you can either hit the web URL or the JSON API:
+To enable the JSON API, set `enable_api` to `true` in `config/alfred.yml`, then use it like so:
 
-    $ curl http://example.com:9292/api/commands.json
+    $ curl -H 'X-AUTH-TOKEN: your_auth_token' http://example.com:9292/api/commands.json
 
 The response will look like this:
 
@@ -29,3 +29,7 @@ The response will look like this:
 
       ...
     ]
+
+Run the server:
+
+    $ rackup

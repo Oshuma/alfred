@@ -18,25 +18,10 @@ module Alfred
     end
 
     helpers do
+      include Alfred::AppHelpers
       include Rack::Utils
+
       alias_method :h, :escape_html
-
-      def check_auth_token!
-        return unless Alfred.config.auth_token
-
-        auth_token = request.env['HTTP_X_AUTH_TOKEN']
-
-        error 401 if auth_token.nil?
-        error 401 unless auth_token == Alfred.config.auth_token
-      end
-
-      def check_basic_auth!
-        return unless Alfred.config.username
-
-        self.class.use Rack::Auth::Basic, "Restricted Area" do |username, password|
-          (username == Alfred.config.username) && (password == Alfred.config.password)
-        end
-      end
     end
 
     before do
@@ -48,7 +33,7 @@ module Alfred
     # GET /commands
     [ '/', '/commands' ].each do |root_path|
       get root_path do
-        check_basic_auth!
+        ensure_web_enabled!
         erb(:index)
       end
     end
@@ -57,7 +42,7 @@ module Alfred
     # GET /command/:id
     [ '/command/:id', '/c/:id' ].each do |command_path|
       get command_path do
-        check_basic_auth!
+        ensure_web_enabled!
         @command = Alfred::Command.find(params[:id])
         erb(:command)
       end
@@ -66,7 +51,7 @@ module Alfred
     # API: Authenticate
     # GET: /api/authenticate.json
     get '/api/authenticate.json' do
-      check_auth_token!
+      ensure_api_enabled!
       headers 'Content-Type' => 'application/json'
       status 200 # OK
     end
@@ -74,7 +59,7 @@ module Alfred
     # API: Commands
     # GET: /api/commands.json
     get '/api/commands.json' do
-      check_auth_token!
+      ensure_api_enabled!
       headers 'Content-Type' => 'application/json'
       @commands.to_json
     end

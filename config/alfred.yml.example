@@ -3,9 +3,20 @@
 # This config file can be used to store arbitrary things (auth details, for example).
 #
 
-# Token Authentication
-# auth_token: ad3ccb67bf338c7a6bec273454f264e857a55379
+# Enable the web interface (default: false)
+# enable_web: true
+
+# Enable the API (default: false)
+# enable_api: true
+
+
+#
+# Authentication
+#
 
 # HTTP Basic Auth
 # username: alfred
 # password: foobar
+
+# Token Authentication
+# auth_token: ad3ccb67bf338c7a6bec273454f264e857a55379

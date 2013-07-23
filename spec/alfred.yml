@@ -3,8 +3,10 @@
 # This config is used in the specs (mimics ROOT/config/alfred.yml).
 #
 
-some_key: some value
-oh_look: here goes another!
+enable_api: true
+enable_web: true
 
-auth:
-  api_key: SUPARSEEKRET
+auth_token: SUPARSEEKRET
+
+username: alfred
+password: foobar
